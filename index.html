@@ -4,14 +4,10 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,viewport-fit=cover" />
   <title>Elisa — Simulação PWA</title>
-
   <link rel="manifest" href="/manifest.json" />
   <meta name="theme-color" content="#222222" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
-  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
-  <meta name="apple-mobile-web-app-title" content="Elisa" />
-  <link rel="apple-touch-icon" href="/assets/icons/icon-192.png" />
-
+  <meta name="apple-touch-icon" href="/assets/icons/icon-192.png" />
   <link rel="stylesheet" href="/styles.css" />
 </head>
 <body>
@@ -22,29 +18,19 @@
       <div class="right">🔋 100%</div>
     </header>
 
-    <main class="app-shell" id="app-shell" role="main">
-      <nav class="home-grid" id="home-grid" aria-label="Lista de Apps">
-        <button class="app-card" aria-label="Música">
-          <img src="/assets/icons/icon-192.png" alt="" />
-          <span>Música</span>
-        </button>
-        <button class="app-card">
-          <img src="/assets/icons/icon-192.png" alt="" />
-          <span>Config</span>
-        </button>
-        <button class="app-card">
-          <img src="/assets/icons/icon-192.png" alt="" />
-          <span>Notas</span>
-        </button>
+    <main class="app-shell" id="app-shell">
+      <nav class="home-grid">
+        <button class="app-card"><img src="/assets/icons/icon-192.png" /><span>Música</span></button>
+        <button class="app-card"><img src="/assets/icons/icon-192.png" /><span>Config</span></button>
+        <button class="app-card"><img src="/assets/icons/icon-192.png" /><span>Notas</span></button>
       </nav>
 
-      <section class="content" id="content">
+      <section class="content">
         <h1>Tela Principal do Aplicativo</h1>
-        <p>Instale a PWA usando o botão de compartilhar → Adicionar à Tela de Início (iOS) ou prompt de instalação (Android/Chrome).</p>
-
+        <p>Instale a PWA usando "Adicionar à Tela de Início".</p>
         <div class="card">
-          <h2>Teste de Recurso Offline</h2>
-          <p>Se <code>sw.js</code> e os assets estiverem corretos, funciona offline.</p>
+          <h2>Teste Offline</h2>
+          <p>Se <code>sw.js</code> e os ativos estiverem corretos, funciona offline.</p>
           <button id="test-btn" class="btn">Botão de Teste</button>
         </div>
       </section>
@@ -63,45 +49,6 @@
     </div>
   </div>
 
-  <script>
-    function updateClock(){
-      const el = document.getElementById('clock');
-      const d = new Date();
-      el.textContent = d.toLocaleTimeString([], {hour:'2-digit',minute:'2-digit'});
-    }
-    setInterval(updateClock, 1000);
-    updateClock();
-
-    let deferredPrompt;
-    const installToast = document.getElementById('install-toast');
-    window.addEventListener('beforeinstallprompt', (e) => {
-      e.preventDefault();
-      deferredPrompt = e;
-      installToast.hidden = false;
-    });
-    document.getElementById('install-yes').addEventListener('click', async () => {
-      installToast.hidden = true;
-      if (!deferredPrompt) return;
-      deferredPrompt.prompt();
-      await deferredPrompt.userChoice;
-      deferredPrompt = null;
-    });
-    document.getElementById('install-no').addEventListener('click', () => {
-      installToast.hidden = true;
-    });
-
-    if ('serviceWorker' in navigator) {
-      window.addEventListener('load', () => {
-        navigator.serviceWorker.register('/sw.js')
-          .then(reg => console.log('SW registrado:', reg.scope))
-          .catch(err => console.error('Erro registrando SW:', err));
-      });
-    }
-
-    document.getElementById('test-btn').addEventListener('click', () => {
-      console.log('Botão de teste clicado!');
-      alert('Botão de teste: funciona!');
-    });
-  </script>
+  <script src="/main.js"></script>
 </body>
 </html>
