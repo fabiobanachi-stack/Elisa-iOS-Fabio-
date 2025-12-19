@@ -1,21 +1,60 @@
-document.addEventListener("DOMContentLoaded", () => {
-  console.log("Elisa OS iniciado");
+// main.js
+window.ElisaOS = {
+  version: "0.1.0",
+  currentView: "home",
 
-  const buttons = document.querySelectorAll(".tab-bar button");
-  const mainView = document.querySelector(".main-view");
-
-  buttons.forEach(button => {
-    button.addEventListener("click", () => {
-      const section = button.innerText;
-
-      mainView.innerHTML = `
-        <h1>${section}</h1>
-        <p>Seção ${section} carregada.</p>
+  views: {
+    home() {
+      return `
+        <h1>Home</h1>
+        <p>Sistema Elisa OS ativo.</p>
 
         <div id="modules">
-          Conteúdo em desenvolvimento.
+          <p>Status: funcionando</p>
+          <p>Versão: ${window.ElisaOS.version}</p>
         </div>
       `;
-    });
-  });
-});
+    },
+
+    apps() {
+      return `
+        <h1>Apps</h1>
+        <p>Aplicações do sistema.</p>
+
+        <div id="modules">
+          <p>Nenhum app carregado ainda.</p>
+        </div>
+      `;
+    },
+
+    ia() {
+      return `
+        <h1>IA</h1>
+        <p>Módulo de inteligência artificial.</p>
+
+        <div id="modules">
+          <p>IA em desenvolvimento.</p>
+        </div>
+      `;
+    },
+
+    settings() {
+      return `
+        <h1>Ajustes</h1>
+        <p>Configurações do sistema.</p>
+
+        <div id="modules">
+          <p>Preferências futuras.</p>
+        </div>
+      `;
+    }
+  },
+
+  render(view) {
+    const container = document.getElementById("view");
+    if (!container) return;
+
+    this.currentView = view;
+    container.innerHTML = this.views[view]();
+  }
+};
