@@ -1,90 +1,55 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Elisa</title>
-<style>
-  body {
-    margin: 0;
-    background: #f2f2f7;
-    font-family: -apple-system, BlinkMacSystemFont, sans-serif;
-  }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
 
-  header {
-    height: 44px;
-    background: rgba(255,255,255,0.9);
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0 12px;
-    font-weight: 600;
-  }
+  <title>Elisa OS</title>
 
-  main {
-    padding: 20px;
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 16px;
-  }
+  <!-- PWA -->
+  <link rel="manifest" href="manifest.json" />
+  <meta name="theme-color" content="#0a84ff" />
 
-  button {
-    height: 90px;
-    border: none;
-    border-radius: 16px;
-    background: white;
-    font-size: 24px;
-    box-shadow: 0 6px 16px rgba(0,0,0,0.1);
-  }
+  <!-- iOS -->
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="apple-mobile-web-app-title" content="Elisa" />
 
-  footer {
-    height: 60px;
-    background: rgba(255,255,255,0.9);
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-  }
-</style>
+  <!-- Estilo -->
+  <link rel="stylesheet" href="styles.css" />
 </head>
 
 <body>
+  <div id="app">
 
-<header>
-  <span>Elisa</span>
-  <span id="hora">00:00</span>
-  <span>100%</span>
-</header>
+    <!-- STATUS -->
+    <header class="status-bar">
+      <span>Elisa OS</span>
+    </header>
 
-<main>
-  <button onclick="abrir('Música')">🎵</button>
-  <button onclick="abrir('Config')">⚙️</button>
-  <button onclick="abrir('Notas')">📝</button>
-  <button onclick="abrir('IA')">🤖</button>
-  <button onclick="abrir('Web')">🌐</button>
-  <button onclick="abrir('Mais')">➕</button>
-</main>
+    <!-- CONTEÚDO PRINCIPAL -->
+    <main class="main-view">
+      <h1>Bem-vindo ao Elisa</h1>
+      <p>Sistema em execução.</p>
 
-<footer>
-  <button>🏠</button>
-  <button>🔍</button>
-  <button>⚙️</button>
-</footer>
+      <!-- ÁREA FUTURA -->
+      <div id="modules">
+        <!-- Voz, apps, Xbox, IA entram aqui depois -->
+      </div>
+    </main>
 
-<script>
-  function atualizarHora() {
-    const h = new Date();
-    document.getElementById("hora").innerText =
-      h.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'});
-  }
+    <!-- MENU INFERIOR -->
+    <nav class="tab-bar">
+      <button>Home</button>
+      <button>Apps</button>
+      <button>IA</button>
+      <button>Ajustes</button>
+    </nav>
 
-  setInterval(atualizarHora, 1000);
-  atualizarHora();
+  </div>
 
-  function abrir(nome) {
-    alert("Abrindo: " + nome);
-  }
-</script>
-
-<script src="app.js"></script>
+  <!-- Scripts -->
+  <script src="main.js"></script>
+  <script src="app.js"></script>
 </body>
 </html>
