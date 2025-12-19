@@ -8,47 +8,44 @@
 
   <!-- PWA -->
   <link rel="manifest" href="manifest.json" />
-  <meta name="theme-color" content="#0a84ff" />
+  <meta name="theme-color" content="#000000" />
 
   <!-- iOS -->
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
   <meta name="apple-mobile-web-app-title" content="Elisa" />
 
-  <!-- Estilo -->
+  <!-- CSS -->
   <link rel="stylesheet" href="styles.css" />
 </head>
 
 <body>
   <div id="app">
 
-    <!-- STATUS -->
+    <!-- STATUS BAR -->
     <header class="status-bar">
-      <span>Elisa OS</span>
+      <span id="app-title">Elisa OS</span>
     </header>
 
-    <!-- CONTEÚDO PRINCIPAL -->
-    <main class="main-view">
+    <!-- VIEW PRINCIPAL (JS CONTROLA TUDO AQUI) -->
+    <main id="view" class="main-view">
       <h1>Bem-vindo ao Elisa</h1>
       <p>Sistema em execução.</p>
 
-      <!-- ÁREA FUTURA -->
-      <div id="modules">
-        <!-- Voz, apps, Xbox, IA entram aqui depois -->
-      </div>
+      <div id="modules"></div>
     </main>
 
-    <!-- MENU INFERIOR -->
+    <!-- TAB BAR -->
     <nav class="tab-bar">
-      <button>Home</button>
-      <button>Apps</button>
-      <button>IA</button>
-      <button>Ajustes</button>
+      <button data-view="home">Home</button>
+      <button data-view="apps">Apps</button>
+      <button data-view="ia">IA</button>
+      <button data-view="settings">Ajustes</button>
     </nav>
 
   </div>
 
-  <!-- Scripts -->
+  <!-- SCRIPTS (ORDEM IMPORTA) -->
   <script src="main.js"></script>
   <script src="app.js"></script>
 </body>
