@@ -3,7 +3,6 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-
   <title>Elisa OS</title>
 
   <!-- PWA -->
@@ -14,25 +13,22 @@
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
   <meta name="apple-mobile-web-app-title" content="Elisa" />
+  <link rel="apple-touch-icon" sizes="180x180" href="icons/icon-192.png" />
 
   <!-- CSS -->
   <link rel="stylesheet" href="styles.css" />
 </head>
-
 <body>
-  <div id="app">
+  <div id="app" class="android-ios-skin">
 
     <!-- STATUS BAR -->
     <header class="status-bar">
       <span id="app-title">Elisa OS</span>
     </header>
 
-    <!-- VIEW PRINCIPAL (JS CONTROLA TUDO AQUI) -->
+    <!-- VIEW PRINCIPAL -->
     <main id="view" class="main-view">
-      <h1>Bem-vindo ao Elisa</h1>
-      <p>Sistema em execução.</p>
-
-      <div id="modules"></div>
+      <!-- Conteúdo renderizado pelo JS -->
     </main>
 
     <!-- TAB BAR -->
@@ -45,8 +41,17 @@
 
   </div>
 
-  <!-- SCRIPTS (ORDEM IMPORTA) -->
+  <!-- Scripts -->
   <script src="main.js"></script>
   <script src="app.js"></script>
+
+  <!-- Service Worker -->
+  <script>
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('sw.js')
+        .then(() => console.log('Service Worker registrado'))
+        .catch(err => console.error('Erro ao registrar SW:', err));
+    }
+  </script>
 </body>
 </html>
